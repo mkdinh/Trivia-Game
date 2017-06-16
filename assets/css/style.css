@@ -19,7 +19,7 @@ body{
 	left:0;
 	opacity:0;
 	z-index:1;
-	animation: reveal 1s ease-in 1.5s 1 normal;
+	animation: reveal 1s ease-in 1.1s 1 normal;
 	animation-fill-mode: forwards;
 }
 
@@ -124,7 +124,7 @@ body{
     padding:10px;
     opacity:0;
     font-family: 'Bungee', cursive;
-    animation: show .5s ease-in 1.5s 1 normal;
+    animation: show .5s ease-in 0s 1 normal;
     animation-fill-mode:forwards;
     border: 2px solid #b40000;
     z-index:0;

@@ -139,6 +139,15 @@ $("documents").ready(function(){
 // Click to start
 var start = function(){
 
+
+    // $("body").prepend('<audio controls autoplay hidden id="background">'
+    //     +'<source src="assets/audio/start4.mp3">'
+    //     + '</audio>'
+    //     );
+
+    playSound("start4.mp3");
+
+   	document.getElementById("background").playbackRate = 1	;
 	$("#startBtn").animate({top: "50px"},1000)
 
 	// click on start button go to play
@@ -154,10 +163,10 @@ var start = function(){
 			game.empty()
 			game.append(loadingGif)
 		},1000)
-
+		setTimeout(function(){$("#loadingGif").fadeOut()},2700)
 		setTimeout(playTrivia,3000)
 		})
-	},1650)
+	},1100)
 }
 
 var playTrivia = function(){
@@ -191,13 +200,16 @@ var playTrivia = function(){
 		game.append(timerDisplay);
 		$("#timer").fadeToggle(500);
 		// $("#timer").css("display","inherit");
-		intervalId = setInterval(timer,1000)},2200)
+		intervalId = setInterval(timer,1000)},1500)
 
 // Display Score
 
 	if(playGame === true){
 		$(".choiceBtn").click(function(){
-			if($(this).text() === topic.correct){			
+			if($(this).text() === topic.correct){	
+
+				playSound("twinkle.mp3")
+    
 				correct();
 			}if($(this).text() !== topic.correct){
 				wrong()
@@ -370,5 +382,10 @@ var appendChoices= function(subject){
 
 }
 
-var num = Math.floor(Math.random()*100);
+function playSound(soundfile){
 
+    $("#game").prepend('<audio controls autoplay hidden id="background">'
+    +'<source src="assets/audio/'+soundfile+'">'
+    + '</audio>'
+    );
+}
