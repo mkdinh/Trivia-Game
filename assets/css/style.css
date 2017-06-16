@@ -1,0 +1,304 @@
+body{
+	background-color: black;
+}
+
+#bannerContainer{
+	position:relative;
+	width:0px;
+	height:75px;
+	overflow:hidden;
+	margin:auto;
+
+}
+
+#banner{
+	width:800px;
+	height:120px;
+	position:absolute;
+	top:200px;
+	left:0;
+	opacity:0;
+	z-index:1;
+	animation: reveal 1s ease-in 1.5s 1 normal;
+	animation-fill-mode: forwards;
+}
+
+@keyframes reveal{
+	/*100%		{left:100%;}*/
+	100% {opacity:1;}
+}
+
+
+
+/*#hide{
+	width:800px;
+	height:130px;
+	position:absolute;
+	top:200px;
+	left:0;
+	background-color: rgba(246,247,251,1);
+	animation: reveal 1s linear 1s 1 normal;
+	z-index:2;
+	animation-fill-mode:forwards;
+}*/
+
+
+#logo{
+	width:300px;
+	position:absolute;
+	right:0;
+	top:0;
+	z-index:3
+}
+
+#gameContainer{
+	box-sizing: content-box;
+	overflow:hidden;
+	margin:auto;
+
+	width:800px;
+	height:400px;
+	background-color: rgba(246,247,251,1);
+	border: 15px solid #1782d6;
+	border-radius:50px;
+	z-index:2;
+
+}
+
+#game{
+	position:relative;
+	width:800px;
+	height:400px;
+	opacity:1;
+}
+
+/*Start Screen*/
+
+.startScreenBtn{
+	
+	width:300px;
+	height:80px;
+	position:absolute;
+	left:250px;	
+	border: 0px solid;
+	font-size:40px;
+	color:white;
+	font-weight:bold;
+	opacity:.5;
+
+}
+
+#startBtn{
+	background-color: rgba(228,89,56,1);
+	top:-100px;
+	animation: hover 2s ease-in-out 1s infinite alternate;
+	font-family: 'Bungee', cursive;
+}
+
+#startBtn:hover{
+	box-shadow: 0px 0px 30px black
+}
+
+@keyframes hover {
+    0%   {top:50px;}
+    50%  {top:40px; font-size:45px;}
+    100% {top:50px;}
+}
+
+/*Play Game*/
+
+#loadingGif{
+	position:relative;
+	height:200px;
+	margin-top: 90px;
+}
+
+#question{
+	overflow: hidden;
+    width: 650px;
+    color: white;
+    background-color: rgba(228,89,56,1);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 25px auto;
+    padding:10px;
+    opacity:0;
+    font-family: 'Bungee', cursive;
+    animation: show .5s ease-in 1.5s 1 normal;
+    animation-fill-mode:forwards;
+    border: 2px solid #b40000;
+    z-index:0;
+}
+
+@keyframes show{
+	100% 	{opacity:1;}
+}
+
+#timerContainer{
+	color: rgba(144,194,59,1);
+	font: bold 30px 'Bungee',cursive;
+	height:50px;
+	width:50px;
+	position:absolute;
+	top:315px;
+	left:375px;
+}
+#timer{
+	margin:auto;
+	display:none;
+}
+
+.choiceBtn{
+	width:250px;
+	height:75px;
+	color:white;
+	font: bold 15px 'Bungee', cursive;
+}
+
+.choiceBtn:hover{
+	animation:hoverChoice .5s linear 0s infinite normal;
+}
+
+@keyframes hoverChoice{
+	0% {width:250px; margin-left:0px; margin-right:0;}
+	50%{width:240px; height: 65px; margin: 5px 5px; font-size:13px;}
+	100% {width:250px; margin-left:0px; margin-right:0;}
+}
+
+#choice1Container{
+	position:absolute;
+	top:125px;
+	left:100%;
+}
+
+#position1{
+	background-color: rgba(102,102,152,1);
+	border:2px solid rgba(65,65,97,1);
+}
+
+
+#choice2Container{
+	position:absolute;
+	top:125px;
+	right:100%;
+}
+
+#position2{
+	background-color: rgba(243,188,23,1);
+	border:2px solid rgba(157,120,9,1);
+}
+
+#choice3Container{
+	position:absolute;		
+	top:225px;
+	left:100%;
+}
+
+#position3{
+	background-color: rgba(72,188,153,1);
+	border:2px solid rgba(54,146,118,1);
+}
+
+#choice4Container{
+	position:absolute;
+	top:225px;
+	right:100%;
+}
+
+#position4{
+	background-color: rgba(69,173,224,1);
+	border:2px solid rgba(30,129,176,1);
+}
+
+/*Correct*/
+
+#blank{
+	width:800px;
+	height:430px;
+	background-color:white;
+	opacity:.7;
+	position:absolute;
+	z-index: 1;
+}
+
+#score{
+    font: bold 100px 'Bungee', cursive;;
+    color: rgba(144,194,59,1);
+    position: absolute;
+    top: 0px;
+    left: 410px;
+    z-index: 4;
+    opacity:0;
+}
+
+#imageContainer{
+	 position: absolute;
+    top: 250px;
+    left: 240px;
+    z-index: 4;
+    width:800px;
+}
+
+#imageBox{
+	margin:auto;
+	position:relative;
+}
+
+#image{
+	position:relative;
+	height:0;
+	z-index: 4;
+	border:1px solid black;
+	animation: imagePop 1s ease-in-out .5s 1 normal ;
+	animation-fill-mode:forwards
+
+}
+
+@keyframes imagePop{
+	0% {width:0;}
+	100% {height:200px;}
+}
+
+/*Wrong */
+
+#strikeDisplay{
+    font: bold 100px 'Bungee', cursive;
+    color: rgba(144,194,59,1);
+    position: absolute;
+    top: 150px;
+    left: 240px;
+    z-index: 4;
+    opacity: 1;
+    width: 800px;
+    height: 200px;
+}
+
+.strikeImg{
+	display:inline-block;
+	height:120px;
+
+	animation: spin 1s ease-in-out 0s 2 alternate ;
+
+}
+
+.strikeContainer{
+	overflow:hidden;
+	height:240px;
+	margin:auto 10px;
+
+}
+
+@keyframes spin{
+	0% {	
+		-ms-transform: rotate(0deg); /* IE 9 */
+    	-webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+    	transform: rotate(0deg);
+    }
+    100%{
+    	-ms-transform: rotate(720deg); /* IE 9 */
+    	-webkit-transform: rotate(720deg); /* Chrome, Safari, Opera */
+    	transform: rotate(720deg);
+    }
+}
+
+
