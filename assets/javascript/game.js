@@ -144,13 +144,20 @@ var start = function(){
 	// click on start button go to play
 
 	setTimeout(function(){
-		$("#startBtn").css("opacity","1")
+		$("#startBtn").animate({opacity: "1"})
 		$("#startBtn").click(function(){
-		game.empty()
-		game.append(loadingGif)
-		setTimeout(playTrivia,2000)
+
+		$("#startBtn").fadeOut();
+		$("#banner").fadeOut();
+
+		setTimeout(function(){
+			game.empty()
+			game.append(loadingGif)
+		},1000)
+
+		setTimeout(playTrivia,3000)
 		})
-	},3200)
+	},1650)
 }
 
 var playTrivia = function(){
@@ -268,7 +275,7 @@ var correct = function(){
 			$("#score").fadeOut();	
 			$("#gameContainer").prepend(loadingGif)
 			setTimeout(function(){$("#loadingGif").fadeOut()},3500)
-		},9000)
+		},6000)
 
 	setTimeout(function(){
 		$("#loadingGif").remove();
@@ -276,7 +283,7 @@ var correct = function(){
 		$("#imageContainer").remove();
 		$("#score").remove();
 		playTrivia();
-	},13000)
+	},10000)
 }
 
 var wrong = function(){
