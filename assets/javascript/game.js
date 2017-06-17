@@ -146,8 +146,7 @@ var start = function(){
     //     );
 
     playSound("start4.mp3");
-
-   	document.getElementById("background").playbackRate = 1	;
+	
 	$("#startBtn").animate({top: "50px"},1000)
 
 	// click on start button go to play
@@ -172,6 +171,8 @@ var start = function(){
 var playTrivia = function(){
 // Empty game div
 	reset();
+
+	playSound("start1.mp3")
 // Generate random topic
 
 	//pick from array of topics
@@ -226,6 +227,11 @@ var timer = function(){
 		wrong()
 	}
 
+	$("#game").prepend('<audio controls hidden id="tick">'
+    +'<source src="assets/audio/tick.mp3">'
+    + '</audio>'
+    );
+
 	if(time === 10){
 		$("#timerContainer").css("color","red")
 	}
@@ -233,6 +239,7 @@ var timer = function(){
 	$("#timer").html(time)
 
 	if(time <= 10){
+		$("#tick").get(0).play()
 		$("#timer").effect("shake",{distance:5},200)
 	}
 }
@@ -299,7 +306,7 @@ var correct = function(){
 }
 
 var wrong = function(){
-
+	playSound('trombone.mp3')
 	playGame=false;
 	clearInterval(intervalId);
 
@@ -384,7 +391,7 @@ var appendChoices= function(subject){
 
 function playSound(soundfile){
 
-    $("#game").prepend('<audio controls autoplay hidden id="background">'
+    $("#game").prepend('<audio controls autoplay hidden id="'+soundfile+'">'
     +'<source src="assets/audio/'+soundfile+'">'
     + '</audio>'
     );
