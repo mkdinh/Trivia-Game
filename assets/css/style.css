@@ -43,6 +43,15 @@ body{
 }*/
 
 
+#logoContainer{
+	position:absolute;
+	right:0px;
+	top:0px;
+	z-index:3
+	width:300px;
+	height:300px;
+}
+
 #logo{
 	width:300px;
 	position:absolute;
@@ -50,6 +59,26 @@ body{
 	top:0;
 	z-index:3
 }
+
+#bubble{
+	width:200px;
+	position:absolute;
+	right:200px;
+	top:180px;
+	z-index:3;
+	visibility:hidden;
+}
+
+#bubbleText{
+	font:bold 20px "Bungee",cursive;
+	position:absolute;
+	top:245px;
+	right:200px;
+	z-index:3;
+	width:200px;
+	text-align:center;
+}	
+
 
 #gameContainer{
 	box-sizing: content-box;
@@ -247,6 +276,7 @@ body{
 #image{
 	position:relative;
 	height:0;
+	width:0;
 	z-index: 4;
 	border:1px solid black;
 	animation: imagePop 2s ease-in-out .5s 1 normal ;
@@ -257,7 +287,7 @@ body{
 @keyframes imagePop{
 	0% {width:0;height:0;}
 	50%{width:0;height:200px;}
-	100% {height: 200px; width:auto;}
+	100% {height:200px;width:auto;}
 }
 
 /*Wrong */
@@ -332,4 +362,12 @@ body{
   50% { border-color: orange; }
 }
 
+#replay{
+	border: 0px solid black;
+	background-color:transparent;
+	font: bold 20px "Bungee", cursive;
+}
 
+#replay:hover{
+	color:rgba(144,194,59,1);
+}

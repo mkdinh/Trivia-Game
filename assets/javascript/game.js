@@ -1,4 +1,4 @@
-subject1 ={
+ subject1 ={
     question:'Which 1998 remake of a 1960 movie told us to "Check in. Unpack. Relax. Take a shower"?',
     gif: "assets/images/psycho.gif",
     correct: "Psycho",
@@ -97,19 +97,8 @@ subject10 ={
     choice3: 'Transformers',
     choice4: 'Bridge to Terabithia',
 }
+var allTopic;
 
-var allTopic = {
-    subject1: subject1,
-    subject2: subject2,
-    subject3: subject3,
-    subject4: subject4,
-    subject5: subject5,
-    subject6: subject6,
-    subject7: subject7,
-    subject8: subject8,
-    subject9: subject9,
-    subject10: subject10,
-}
 var topic;
 var intervalId;
 var choice1;
@@ -117,9 +106,8 @@ var choice2;
 var choice3;
 var choice4;
 var time;
-var count = 0;
-var score = 0;
-var strike = 0;
+var score;
+var strike;
 var game = $("#game");
 var loadingGif = '<img id="loadingGif" src="assets/images/loading.gif">';
 
@@ -131,6 +119,26 @@ var reset = function(){
 game.empty()
 }
 
+
+function resetAllTopic(){
+    allTopic = {
+        subject1: subject1,
+        subject2: subject2,
+        subject3: subject3,
+        subject4: subject4,
+        subject5: subject5,
+        subject6: subject6,
+        subject7: subject7,
+        subject8: subject8,
+        subject9: subject9,
+        subject10: subject10,
+    }
+
+    strike = 0;
+    score = 0;
+}
+
+resetAllTopic();
 
 // Documents ready
 $("documents").ready(function(){
@@ -213,9 +221,10 @@ var playTrivia = function(){
             if($(this).text() === topic.correct){   
 
                 playSound("twinkle.mp3")
-    
+                textBubble("Correct!")
                 correct();
             }if($(this).text() !== topic.correct){
+                textBubble("Wrong!")
                 wrong()
             }
         })
@@ -227,6 +236,7 @@ var timer = function(){
 
     time--;
     if(time === 0){
+        textBubble("Out of Time!")
         wrong()
     }
 
@@ -350,7 +360,7 @@ var wrong = function(){
         $("#blank").remove();
         $("#strikeDisplay").remove();
         $("#imageContainer").remove();
-        if(strike<3){playTrivia();}
+        if(strike<1){playTrivia();}
         else{finished()}
     },2000*i+2000)
 
@@ -403,15 +413,41 @@ function playSound(soundfile){
 }
 
 var finished = function(){
-    $("#logo").animate({right:"270px",top:"150px"})
+    $("#logoContainer").animate({right:"270px",top:"150px"},500)
     var containerTxt = $("<div>")
-    var txt = $("<h1>");
-    containerTxt.append(txt);
+    var txt1 = $("<h1>");
+    containerTxt.append(txt1);
     containerTxt.attr("id","typewriter")
 
     setTimeout(function(){
-        txt.text("Your final score is "+score)
+        txt1.text("Your final score is "+score)
     },000);
+    
+    var replayBtn = $("<button>");
+    replayBtn.attr("id","replay");
+    setTimeout(function(){
+        replayBtn.text("try again?");
+        $("#bubble").css("visibility","visible");
+        $("#bubbleText").html(replayBtn);
+        },4000);
 
     game.append(containerTxt)
+
+    replayBtn.click(function(){
+        textBubble("good luck!");
+        resetAllTopic();
+        setTimeout(function(){
+            $("#logoContainer").animate({right:"0",top:"0"},1000)
+            playTrivia()
+        },3000)
+    })
+}
+
+var textBubble = function(text){
+    $("#bubble").css("visibility","visible");
+    $("#bubbleText").html(text);
+    setTimeout(function(){
+        $("#bubble").css("visibility","hidden")
+        $("#bubbleText").empty()
+    },3000)
 }
