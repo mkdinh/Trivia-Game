@@ -304,6 +304,11 @@ body{
     height: 200px;
 }
 
+.strikeImgNoAnimation{
+	display:inline-block;
+	height:120px;
+}
+
 .strikeImg{
 	display:inline-block;
 	height:120px;
@@ -333,7 +338,11 @@ body{
 }
 
 /*finished*/
-
+#typewriter{
+	position: absolute;
+    top: 160px;
+    left: 40px;
+}
 #typewriter h1{
     overflow: hidden;
     border-right: .15em solid orange;
@@ -342,18 +351,16 @@ body{
     letter-spacing: .10em;
     animation: typing 3s steps(40, end),
  		 blink-caret .75s step-end infinite;
-    position: absolute;
-    top: 160px;
-    left: 40px;
     width:0px;
+    text-align:left;
     animation-fill-mode:forwards;
 
 }
 
 /* The typing effect */
 @keyframes typing {
-  from { width: 0 }
-  to { width: 400px }
+  from: {width: 0 }
+  to 	{width: 100%}
 }
 
 /* The typewriter cursor effect */

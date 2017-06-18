@@ -192,10 +192,6 @@ var playTrivia = function(){
     topic = allTopic[propTopic];
     delete allTopic[propTopic]
     // Display Question
-    
-    console.log(score)
-    console.log(allTopic)
-    console.log(topic)
 
     appendQuestion(topic);
 
@@ -320,7 +316,7 @@ var correct = function(){
 }
 
 var wrong = function(){
-    playSound('trombone.mp3')
+    playSound('wrong.wav')
     playGame=false;
     clearInterval(intervalId);
 
@@ -338,12 +334,19 @@ var wrong = function(){
     $("#strikeDisplay").append(strikeContainer);
     var strikeImg = '<img class="strikeImg" src="assets/images/strike.png">';
 
-    for(i = 1; i <= strike; i++){
-        setTimeout(function(){
-            $(".strikeContainer").append(strikeImg);
+    // for(i = 1; i <= strike; i++){
+    //     setTimeout(function(){
+    //         $(".strikeContainer").append(strikeImg);
             
-        },1500*i)
+    //     },1500*i)
+    // }
+    console.log(strike)
+    if(strike>1){
+        for(i = 2; i <= strike;i++){
+             $(".strikeContainer").append('<img class="strikeImgNoAnimation" src="assets/images/strike.png">');
+        }
     }
+    $(".strikeContainer").append(strikeImg);
 
     setTimeout(function(){
             reset();
@@ -352,7 +355,7 @@ var wrong = function(){
             $("#imageContainer").fadeOut();
             $("#gameContainer").prepend(loadingGif)
             setTimeout(function(){$("#loadingGif").fadeOut()},2000)
-        },2000*i)
+        },4000)
 
     setTimeout(function(){
 
@@ -360,9 +363,9 @@ var wrong = function(){
         $("#blank").remove();
         $("#strikeDisplay").remove();
         $("#imageContainer").remove();
-        if(strike<1){playTrivia();}
+        if(strike<3){playTrivia();}
         else{finished()}
-    },2000*i+2000)
+    },7000)
 
 }
 
@@ -413,6 +416,8 @@ function playSound(soundfile){
 }
 
 var finished = function(){
+    if(score === 10){playSound("finished.wav")}else{playSound("lose.wav")}
+
     $("#logoContainer").animate({right:"270px",top:"150px"},500)
     var containerTxt = $("<div>")
     var txt1 = $("<h1>");
@@ -420,13 +425,13 @@ var finished = function(){
     containerTxt.attr("id","typewriter")
 
     setTimeout(function(){
-        txt1.text("Your final score is "+score)
+        txt1.text("Your final score: "+score)
     },000);
     
     var replayBtn = $("<button>");
     replayBtn.attr("id","replay");
     setTimeout(function(){
-        replayBtn.text("try again?");
+        replayBtn.text("play again?");
         $("#bubble").css("visibility","visible");
         $("#bubbleText").html(replayBtn);
         },4000);
@@ -439,6 +444,7 @@ var finished = function(){
         setTimeout(function(){
             $("#logoContainer").animate({right:"0",top:"0"},1000)
             playTrivia()
+            playSound("start3.mp3")
         },3000)
     })
 }
