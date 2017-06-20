@@ -112,7 +112,7 @@ var game = $("#game");
 var loadingGif = '<img id="loadingGif" src="assets/images/loading.gif">';
 
 var reset = function(){
- time = 30;
+ time = 20;
  topic = '';
  playGame = true;
  // Empty game div
@@ -122,16 +122,16 @@ game.empty()
 
 function resetAllTopic(){
     allTopic = {
-        subject1: subject1,
-        subject2: subject2,
-        subject3: subject3,
-        subject4: subject4,
-        subject5: subject5,
-        subject6: subject6,
-        subject7: subject7,
-        subject8: subject8,
-        subject9: subject9,
-        subject10: subject10,
+        subject1: subject1
+        // subject2: subject2,
+        // subject3: subject3,
+        // subject4: subject4,
+        // subject5: subject5,
+        // subject6: subject6,
+        // subject7: subject7,
+        // subject8: subject8,
+        // subject9: subject9,
+        // subject10: subject10,
     }
 
     strike = 0;
@@ -310,7 +310,7 @@ var correct = function(){
         $("#blank").remove();
         $("#imageContainer").remove();
         $("#score").remove();
-        if(score<10){playTrivia()}
+        if(strike+score < 10){console.log(allTopic);playTrivia()}
             else{finished()};
     },10000)
 }
@@ -416,7 +416,7 @@ function playSound(soundfile){
 }
 
 var finished = function(){
-    if(score === 10){playSound("finished.wav")}else{playSound("lose.wav")}
+    if(strike+score === 10){playSound("finished.wav")}else{playSound("lose.wav")}
 
     $("#logoContainer").animate({right:"270px",top:"150px"},500)
     var containerTxt = $("<div>")
