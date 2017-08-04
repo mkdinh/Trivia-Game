@@ -1,4 +1,4 @@
- subject1 ={
+     subject1 ={
     question:'Which 1998 remake of a 1960 movie told us to "Check in. Unpack. Relax. Take a shower"?',
     gif: "assets/images/psycho.gif",
     correct: "Psycho",
@@ -122,16 +122,16 @@ game.empty()
 
 function resetAllTopic(){
     allTopic = {
-        subject1: subject1
-        // subject2: subject2,
-        // subject3: subject3,
-        // subject4: subject4,
-        // subject5: subject5,
-        // subject6: subject6,
-        // subject7: subject7,
-        // subject8: subject8,
-        // subject9: subject9,
-        // subject10: subject10,
+        subject1: subject1,
+        subject2: subject2,
+        subject3: subject3,
+        subject4: subject4,
+        subject5: subject5,
+        subject6: subject6,
+        subject7: subject7,
+        subject8: subject8,
+        subject9: subject9,
+        subject10: subject10,
     }
 
     strike = 0;
@@ -155,7 +155,7 @@ var start = function(){
     //     );
 
     playSound("start4.mp3");
-    
+
     $("#startBtn").animate({top: "50px"},1000)
 
     // click on start button go to play
@@ -190,9 +190,10 @@ var playTrivia = function(){
 
     propTopic = randTopic(allTopic);
     topic = allTopic[propTopic];
-    delete allTopic[propTopic]
-    // Display Question
 
+    delete allTopic[propTopic];
+    // Display Question
+    console.log(topic)
     appendQuestion(topic);
 
     // Display choices
@@ -214,7 +215,7 @@ var playTrivia = function(){
 
     if(playGame === true){
         $(".choiceBtn").click(function(){
-            if($(this).text() === topic.correct){   
+            if($(this).text() === topic.correct){
 
                 playSound("twinkle.mp3")
                 textBubble("Correct!")
@@ -295,12 +296,12 @@ var correct = function(){
     imageContainer.append(imageBox)
     $("#gameContainer").prepend(imageContainer);
 
-    // set auto next topic (Set interval) 
+    // set auto next topic (Set interval)
     setTimeout(function(){
             reset();
             $("#blank").fadeOut();
             $("#imageContainer").fadeOut();
-            $("#score").fadeOut();  
+            $("#score").fadeOut();
             $("#gameContainer").prepend(loadingGif)
             setTimeout(function(){$("#loadingGif").fadeOut()},3500)
         },6000)
@@ -337,7 +338,7 @@ var wrong = function(){
     // for(i = 1; i <= strike; i++){
     //     setTimeout(function(){
     //         $(".strikeContainer").append(strikeImg);
-            
+
     //     },1500*i)
     // }
     console.log(strike)
@@ -427,7 +428,7 @@ var finished = function(){
     setTimeout(function(){
         txt1.text("Your final score: "+score)
     },000);
-    
+
     var replayBtn = $("<button>");
     replayBtn.attr("id","replay");
     setTimeout(function(){
